@@ -3,7 +3,7 @@ const { getDefaultConfig } = require('expo/metro-config');
 const config = getDefaultConfig(__dirname);
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
-  if (moduleName === 'isows') {
+  if (moduleName === 'isows' || moduleName.startsWith('zustand')) {
     return context.resolveRequest(
       { ...context, unstable_enablePackageExports: false },
       moduleName,

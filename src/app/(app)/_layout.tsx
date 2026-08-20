@@ -8,10 +8,10 @@ export default function AppLayout() {
   return (
     <AuthBoundary
       loading={<FullScreenLoader />}
-      error={<ErrorScreen />}
-      unauthenticated={<Redirect href="../index" />}
+      error={(error) => <ErrorScreen error={error} />}
+      unauthenticated={<Redirect href="../welcome" />}
     >
-      <Stack />
+      <Stack screenOptions={{ headerShown: false }} />
     </AuthBoundary>
   );
 }

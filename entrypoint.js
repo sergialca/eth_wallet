@@ -1,6 +1,9 @@
-// Import required polyfills first
-import '@ethersproject/shims';
+// Import required polyfills first. This order is required.
 import 'fast-text-encoding';
 import 'react-native-get-random-values';
-// Then import the expo router
+import '@ethersproject/shims';
+import { Buffer } from 'buffer';
+
+global.Buffer = Buffer;
+
 import 'expo-router/entry';
