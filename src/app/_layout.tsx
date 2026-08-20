@@ -1,18 +1,22 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from 'react-native';
+import PrevyReady from './prevy-ready';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { PrivyProvider } from '@privy-io/expo';
+
+import 'react-native-get-random-values';
+
+
+const privyAppId = process.env.EXPO_PUBLIC_PRIVY_APP_ID!;
+const privyClientId = process.env.EXPO_PUBLIC_PRIVY_CLIENT_ID!;
 
 SplashScreen.preventAutoHideAsync();
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <PrivyProvider appId={privyAppId} clientId={privyClientId}>
+      <PrevyReady />
+    </PrivyProvider>
   );
 }
